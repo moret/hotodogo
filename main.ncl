@@ -14,6 +14,11 @@
 					left="25%"
 					height="50%"
 					width="50%"/>
+			<region id="rgAd"
+					top="5%"
+					left="70%"
+					height="5%"
+					width="5%"/>
 		</region>
 	</regionBase>
 	
@@ -24,6 +29,9 @@
 		<descriptor
 				id="dsText"
 				region="rgText"/>
+		<descriptor
+				id="dsAd"
+				region="rgAd"/>
 	</descriptorBase>
 	
 	<connectorBase>
@@ -46,27 +54,40 @@
 				id="start"
 				begin="0s"/>
 		<area
-				id="certainPoint"
+				id="startKraft"
 				begin="5s"/>
 		<area
-				id="later"
+				id="endKraft"
+				begin="10s"/>
+		<area
+				id="startMaionese"
+				begin="12s"/>
+		<area
+				id="endMaionese"
 				begin="20s"/>
 	</media>
 	
 	<media
-			id="testText"
-			src="teste.txt"
-			descriptor="dsText">
+			id="adMaionese"
+			src="maio_leite.jpg"
+			descriptor="dsAd">
 	</media>
 
+	<media
+			id="adKraft"
+			src="kraft-logo.png"
+			descriptor="dsAd">
+	</media>
+
+	<!-- Kraft Ad -->
 	<link
 			xconnector="cb#onBeginStart">
 		<bind
 				component="sampaClip"
-				interface="certainPoint"
+				interface="startKraft"
 				role="onBegin"/>
 		<bind
-				component="testText"
+				component="adKraft"
 				role="start"/>
 	</link>
 
@@ -74,40 +95,35 @@
 			xconnector="cb#onBeginStop">
 		<bind
 				component="sampaClip"
-				interface="later"
+				interface="endKraft"
 				role="onBegin"/>
 		<bind
-				component="testText"
+				component="adKraft"
 				role="stop"/>
 	</link>
-
-<!--
-	<link xconnector="onBeginStart">
-		<bind component="video" interface="arIcone" role="onBegin"/>
-		<bind component="icone" role="start"/>
-	</link>
-
-	<link xconnector="onEndStop">
-		<bind component="video" interface="arIcone" role="onEnd"/>
-		<bind component="icone" role="stop"/>
-	</link>
 	
-	<link xconnector="onKeySelectionSetResizeStartStop">
-		<bind component="icone" role="onSelection">
-			<bindParam name="keyCode" value="RED"/>
-		</bind>
-		<bind component="video" interface="bounds" role="set">
-			<bindParam name="var" value="27.97%, 13.33%, 44.22%, 41.87%"/>
-		</bind>
-		<bind component="ctxPratos" interface="poEntPratos" role="start"/>
-		<bind component="icone" role="stop"/>
+	<!-- Maionese Ad -->
+	<link
+			xconnector="cb#onBeginStart">
+		<bind
+				component="sampaClip"
+				interface="startMaionese"
+				role="onBegin"/>
+		<bind
+				component="adMaionese"
+				role="start"/>
 	</link>
 
-	<link xconnector="onEndAbort">
-		<bind component="video" role="onEnd"/>
-		<bind component="ctxPratos" role="abort"/>
+	<link
+			xconnector="cb#onBeginStop">
+		<bind
+				component="sampaClip"
+				interface="endMaionese"
+				role="onBegin"/>
+		<bind
+				component="adMaionese"
+				role="stop"/>
 	</link>
--->
 	
 </body>
 </ncl>
