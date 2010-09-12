@@ -9,26 +9,44 @@
 		<region id="rgMainFull"
 				width="100%"
 				height="100%">
-			<region id="rgText"
-					top="25%"
+			<region id="rgButton"
+					top="5%"
 					left="25%"
-					height="50%"
-					width="50%"/>
+					height="5%"
+					width="5%"/>
+			<region id="rgAd"
+					top="5%"
+					left="70%"
+					height="5%"
+					width="5%"/>
 			<region id="rgAd"
 					top="5%"
 					left="70%"
 					height="5%"
 					width="5%"/>
 		</region>
+		<region id="rgText"
+				top="80%"
+				left="35%"
+				height="20%"
+				width="30%"/>
 	</regionBase>
 	
 	<descriptorBase>
 		<descriptor
 				id="dsMainFull"
-				region="rgMainFull"/>
+				region="rgMainFull"
+				focusIndex="0"/>
+		<descriptor
+				id="dsButton"
+				region="rgButton"/>
+		<descriptor
+				id="dsAd"
+				region="rgAd"/>
 		<descriptor
 				id="dsText"
-				region="rgText"/>
+				region="rgText"
+				focusIndex="0"/>
 		<descriptor
 				id="dsAd"
 				region="rgAd"/>
@@ -43,13 +61,19 @@
 
 <body>
 	<port
-			id="bodyPort"
+			id="sampaClipPort"
 			component="sampaClip"/>
+	
+	<port
+			id="btRedPort"
+			component="btRed"/>
 	
 	<media
 			id="sampaClip"
 			src="20100815.mp4"
 			descriptor="dsMainFull">
+		<property
+				name="bounds"/>
 		<area
 				id="start"
 				begin="0s"/>
@@ -66,7 +90,20 @@
 				id="endMaionese"
 				begin="20s"/>
 	</media>
-	
+
+	<media
+			id="txTeste"
+			src="teste.txt"
+			descriptor="dsText">
+	</media>
+
+	<media
+			id="btRed"
+			src="buttons/red.png"
+			descriptor="dsButton">
+	</media>
+
+	<!-- Ad Medias -->	
 	<media
 			id="adMaionese"
 			src="maio_leite.jpg"
@@ -79,6 +116,52 @@
 			descriptor="dsAd">
 	</media>
 
+	<!-- Accept interaction - open instructions -->
+	<link
+			xconnector="cb#onKeySelectionStartNSetN">
+		<bind
+				component="btRed"
+				role="onSelection">
+			<bindParam
+					name="keyCode"
+					value="RED"/>
+		</bind>
+		<bind
+				component="sampaClip"
+				interface="bounds"
+				role="set">
+			<bindParam
+					name="var"
+					value="10.0%, 0.0%, 80.0%, 80.0%"/>
+		</bind>
+		<bind
+				component="txTeste"
+				role="start"/>
+	</link>
+
+	<!-- Dismiss interaction - close instructions -->
+	<link
+			xconnector="cb#onKeySelectionStopNSetN">
+		<bind
+				component="txTeste"
+				role="onSelection">
+			<bindParam
+					name="keyCode"
+					value="RED"/>
+		</bind>
+		<bind
+				component="sampaClip"
+				interface="bounds"
+				role="set">
+			<bindParam
+					name="var"
+					value="0.0%, 0.0%, 125.0%, 125.0%"/>
+		</bind>
+		<bind
+				component="txTeste"
+				role="stop"/>
+	</link>
+	
 	<!-- Kraft Ad -->
 	<link
 			xconnector="cb#onBeginStart">
