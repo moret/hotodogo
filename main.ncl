@@ -6,14 +6,19 @@
 
 <head>
 	<regionBase>
+		<region id="rgBg"
+				width="100%"
+				height="100%"
+				zIndex="0"/>
 		<region id="rgMain"
 				width="100%"
-				height="100%">
+				height="100%"
+				zIndex="1">
 			<region id="rgButton"
-					top="5%"
+					top="2%"
 					left="25%"
-					height="30"
-					width="60"/>
+					height="4%"
+					width="4%"/>
 			<region id="rgAd"
 					top="5%"
 					left="70%"
@@ -22,34 +27,38 @@
 		</region>
 		<region id="rgMenu"
 				top="80%"
-				left="0%"
+				left="0"
 				height="20%"
-				width="100%">
+				width="100%"
+				zIndex="1">
 			<!-- Menu regions -->
 			<region id="rgMenuItem1"
-					top="00%"
-					left="25%"
-					height="20"
-					width="40"/>
+					top="5%"
+					left="10%"
+					height="20%"
+					width="20%"/>
 			<region id="rgMenuItem2"
-					top="25%"
-					left="25%"
-					height="20"
-					width="40"/>
+					top="29%"
+					left="10%"
+					height="20%"
+					width="20%"/>
 			<region id="rgMenuItem3"
-					top="50%"
-					left="25%"
-					height="20"
-					width="40"/>
+					top="53%"
+					left="10%"
+					height="20%"
+					width="20%"/>
 			<region id="rgMenuItem4"
-					top="75%"
-					left="25%"
-					height="20"
-					width="40"/>
+					top="77%"
+					left="10%"
+					height="20%"
+					width="20%"/>
 		</region>
 	</regionBase>
 	
 	<descriptorBase>
+		<descriptor
+				id="dsBg"
+				region="rgBg"/>
 		<descriptor
 				id="dsMain"
 				region="rgMain"/>
@@ -59,7 +68,8 @@
 		<descriptor
 				id="dsAd"
 				region="rgAd"/>
-		<!-- Menu descriptors -->
+				
+		<!-- Top Menu descriptors -->
 		<descriptor
 				id="dsMenuItem1"
 				region="rgMenuItem1"
@@ -84,6 +94,33 @@
 				focusIndex="4"
 				moveUp="3"
 				moveDown="1"/>
+
+		<!-- SubMenu descriptors -->
+		<descriptor
+				id="dsSubMenuItem1"
+				region="rgMenuItem1"
+				focusIndex="11"
+				moveUp="14"
+				moveDown="12"/>
+		<descriptor
+				id="dsSubMenuItem2"
+				region="rgMenuItem2"
+				focusIndex="12"
+				moveUp="11"
+				moveDown="13"/>
+		<descriptor
+				id="dsSubMenuItem3"
+				region="rgMenuItem3"
+				focusIndex="13"
+				moveUp="12"
+				moveDown="14"/>
+		<descriptor
+				id="dsSubMenuItem4"
+				region="rgMenuItem4"
+				focusIndex="14"
+				moveUp="13"
+				moveDown="11"/>
+
 	</descriptorBase>
 	
 	<connectorBase>
@@ -158,79 +195,175 @@
 		<port
 				id="pBtTopMenu4"
 				component="btTopMenu4"/>
+		<port
+				id="pBgTop"
+				component="bgTop"/>
 				
+		<media
+				id="bgTop"
+				src="bg.png"
+				descriptor="dsBg">
+		</media>
 		<!-- Menu Buttons -->
 		<media
 				id="btTopMenu1"
-				src="buttons/green1.png"
+				src="menu/topmenu1.png"
 				descriptor="dsMenuItem1">
 		</media>
 		<media
 				id="btTopMenu2"
-				src="buttons/green1.png"
+				src="menu/topmenu2.png"
 				descriptor="dsMenuItem2">
 		</media>
 		<media
 				id="btTopMenu3"
-				src="buttons/green1.png"
+				src="menu/topmenu3.png"
 				descriptor="dsMenuItem3">
 		</media>
 		<media
 				id="btTopMenu4"
-				src="buttons/red.png"
+				src="menu/topmenu4.png"
 				descriptor="dsMenuItem4">
 		</media>
 	</context>
 
-	<!-- Accept interaction - open instructions -->
-	<link
-			xconnector="cb#onKeySelectionStartNStopNSetN">
-		<bind
-				component="btRed"
-				role="onSelection">
-			<bindParam
-					name="keyCode"
-					value="RED"/>
-		</bind>
-		<bind
-				component="sampaClip"
-				interface="bounds"
-				role="set">
-			<bindParam
-					name="var"
-					value="10.0%, 0.0%, 80.0%, 80.0%"/>
-		</bind>
-		<bind
-				component="ctxMenu"
-				role="start"/>
-		<bind
-				component="btRed"
-				role="stop"/>
-	</link>
+	<context
+			id="ctxSubMenu1">
+		<port
+				id="pBtSub1Menu1"
+				component="btSub1Menu1"/>
+		<port
+				id="pBtSub1Menu2"
+				component="btSub1Menu2"/>
+		<port
+				id="pBtSub1Menu3"
+				component="btSub1Menu3"/>
+		<port
+				id="pBtSub1Menu4"
+				component="btSub1Menu4"/>
+		<port
+				id="pBgSub1"
+				component="bgSub1"/>
+				
+		<media
+				id="bgSub1"
+				src="bg.png"
+				descriptor="dsBg">
+		</media>
+		<!-- Menu Buttons -->
+		<media
+				id="btSub1Menu1"
+				src="menu/sub1menu1.png"
+				descriptor="dsSubMenuItem1">
+		</media>
+		<media
+				id="btSub1Menu2"
+				src="menu/sub1menu2.png"
+				descriptor="dsSubMenuItem2">
+		</media>
+		<media
+				id="btSub1Menu3"
+				src="menu/sub1menu3.png"
+				descriptor="dsSubMenuItem3">
+		</media>
+		<media
+				id="btSub1Menu4"
+				src="menu/sub1menu4.png"
+				descriptor="dsSubMenuItem4">
+		</media>
+	</context>
 
-	<!-- Dismiss interaction - close instructions -->
-	<link
-			xconnector="cb#onSelectionStartNStopNSetN">
-		<bind
-				component="ctxMenu"
-				interface="pBtTopMenu4"
-				role="onSelection">
-		</bind>
-		<bind
-				component="sampaClip"
-				interface="bounds"
-				role="set">
-			<bindParam
-					name="var"
-					value="0.0%, 0.0%, 125.0%, 125.0%"/>
-		</bind>
-		<bind
-				component="btRed"
-				role="start"/>
-		<bind
-				component="ctxMenu"
-				role="stop"/>
-	</link>
+	<context
+			id="ctxSubMenu2">
+		<port
+				id="pBtSub2Menu1"
+				component="btSub2Menu1"/>
+		<port
+				id="pBtSub2Menu2"
+				component="btSub2Menu2"/>
+		<port
+				id="pBtSub2Menu3"
+				component="btSub2Menu3"/>
+		<port
+				id="pBtSub2Menu4"
+				component="btSub2Menu4"/>
+		<port
+				id="pBgSub2"
+				component="bgSub2"/>
+				
+		<media
+				id="bgSub2"
+				src="bg.png"
+				descriptor="dsBg">
+		</media>
+		<!-- Menu Buttons -->
+		<media
+				id="btSub2Menu1"
+				src="menu/sub2menu1.png"
+				descriptor="dsSubMenuItem1">
+		</media>
+		<media
+				id="btSub2Menu2"
+				src="menu/sub2menu2.png"
+				descriptor="dsSubMenuItem2">
+		</media>
+		<media
+				id="btSub2Menu3"
+				src="menu/sub2menu3.png"
+				descriptor="dsSubMenuItem3">
+		</media>
+		<media
+				id="btSub2Menu4"
+				src="menu/sub2menu4.png"
+				descriptor="dsSubMenuItem4">
+		</media>
+	</context>
+
+	<context
+			id="ctxSubMenu3">
+		<port
+				id="pBtSub3Menu1"
+				component="btSub3Menu1"/>
+		<port
+				id="pBtSub3Menu2"
+				component="btSub3Menu2"/>
+		<port
+				id="pBtSub3Menu3"
+				component="btSub3Menu3"/>
+		<port
+				id="pBtSub3Menu4"
+				component="btSub3Menu4"/>
+		<port
+				id="pBgSub3"
+				component="bgSub3"/>
+				
+		<media
+				id="bgSub3"
+				src="bg.png"
+				descriptor="dsBg">
+		</media>
+		<!-- Menu Buttons -->
+		<media
+				id="btSub3Menu1"
+				src="menu/sub3menu1.png"
+				descriptor="dsSubMenuItem1">
+		</media>
+		<media
+				id="btSub3Menu2"
+				src="menu/sub3menu2.png"
+				descriptor="dsSubMenuItem2">
+		</media>
+		<media
+				id="btSub3Menu3"
+				src="menu/sub3menu3.png"
+				descriptor="dsSubMenuItem3">
+		</media>
+		<media
+				id="btSub3Menu4"
+				src="menu/sub3menu4.png"
+				descriptor="dsSubMenuItem4">
+		</media>
+	</context>
 
 	<!-- Kraft Ad -->
 	<link
@@ -275,5 +408,145 @@
 				component="adMaionese"
 				role="stop"/>
 	</link>
+	
+	<!-- Open main menu -->
+	<link
+			xconnector="cb#onKeySelectionStartNStopNSetN">
+		<bind
+				component="btRed"
+				role="onSelection">
+			<bindParam
+					name="keyCode"
+					value="RED"/>
+		</bind>
+		<bind
+				component="sampaClip"
+				interface="bounds"
+				role="set">
+			<bindParam
+					name="var"
+					value="10.0%, 0.0%, 80.0%, 80.0%"/>
+		</bind>
+		<bind
+				component="ctxMenu"
+				role="start"/>
+		<bind
+				component="btRed"
+				role="stop"/>
+	</link>
+
+	<!-- Close main menu -->
+	<link
+			xconnector="cb#onSelectionStartNStopNSetN">
+		<bind
+				component="ctxMenu"
+				interface="pBtTopMenu4"
+				role="onSelection"/>
+		<bind
+				component="sampaClip"
+				interface="bounds"
+				role="set">
+			<bindParam
+					name="var"
+					value="0.0%, 0.0%, 125.0%, 125.0%"/>
+		</bind>
+		<bind
+				component="btRed"
+				role="start"/>
+		<bind
+				component="ctxMenu"
+				role="stop"/>
+	</link>
+
+	<!-- Open subMenu1 -->
+	<link
+			xconnector="cb#onSelectionStartNStopN">
+		<bind
+				component="ctxMenu"
+				interface="pBtTopMenu1"
+				role="onSelection"/>
+		<bind
+				component="ctxSubMenu1"
+				role="start"/>
+		<bind
+				component="ctxMenu"
+				role="stop"/>
+	</link>
+
+	<!-- Close subMenu1 -->
+	<link
+			xconnector="cb#onSelectionStartNStopN">
+		<bind
+				component="ctxSubMenu1"
+				interface="pBtSub1Menu4"
+				role="onSelection"/>
+		<bind
+				component="ctxMenu"
+				role="start"/>
+		<bind
+				component="ctxSubMenu1"
+				role="stop"/>
+	</link>
+
+	<!-- Open subMenu2 -->
+	<link
+			xconnector="cb#onSelectionStartNStopN">
+		<bind
+				component="ctxMenu"
+				interface="pBtTopMenu2"
+				role="onSelection"/>
+		<bind
+				component="ctxSubMenu2"
+				role="start"/>
+		<bind
+				component="ctxMenu"
+				role="stop"/>
+	</link>
+
+	<!-- Close subMenu2 -->
+	<link
+			xconnector="cb#onSelectionStartNStopN">
+		<bind
+				component="ctxSubMenu2"
+				interface="pBtSub2Menu4"
+				role="onSelection"/>
+		<bind
+				component="ctxMenu"
+				role="start"/>
+		<bind
+				component="ctxSubMenu2"
+				role="stop"/>
+	</link>
+
+	<!-- Open subMenu3 -->
+	<link
+			xconnector="cb#onSelectionStartNStopN">
+		<bind
+				component="ctxMenu"
+				interface="pBtTopMenu3"
+				role="onSelection"/>
+		<bind
+				component="ctxSubMenu3"
+				role="start"/>
+		<bind
+				component="ctxMenu"
+				role="stop"/>
+	</link>
+
+	<!-- Close subMenu3 -->
+	<link
+			xconnector="cb#onSelectionStartNStopN">
+		<bind
+				component="ctxSubMenu3"
+				interface="pBtSub3Menu4"
+				role="onSelection"/>
+		<bind
+				component="ctxMenu"
+				role="start"/>
+		<bind
+				component="ctxSubMenu3"
+				role="stop"/>
+	</link>
+
 </body>
 </ncl>
