@@ -462,6 +462,16 @@ http://www.ncl.org.br/NCL3.0/profiles/NCL30CausalConnector.xsd">
   </compoundAction>
 </causalConnector>
 
+<causalConnector id="onSelectionStartNStopNSetN">
+  <connectorParam name="var"/>
+  <simpleCondition role="onSelection"/>
+  <compoundAction operator="seq">
+    <simpleAction role="start" max="unbounded" qualifier="par"/>
+    <simpleAction role="stop" max="unbounded" qualifier="par"/>
+    <simpleAction role="set" value="$var" max="unbounded" qualifier="par"/>
+  </compoundAction>
+</causalConnector>
+
 <causalConnector id="onSelectionStartNDelayStopN">
   <connectorParam name="delay" />
   <simpleCondition role="onSelection"/>
@@ -590,6 +600,19 @@ http://www.ncl.org.br/NCL3.0/profiles/NCL30CausalConnector.xsd">
   <compoundAction operator="seq">
     <simpleAction role="start" max="unbounded" qualifier="par"/>
     <simpleAction role="set" value="$var" max="unbounded" qualifier="par"/>
+  </compoundAction>
+</causalConnector>
+
+<causalConnector id="onKeySelectionStartNStopNSetN">
+  <connectorParam name="keyCode" />
+  <connectorParam name="var"/>
+  <connectorParam name="duration"/>
+  <connectorParam name="by"/>
+  <simpleCondition role="onSelection" key="$keyCode" />
+  <compoundAction operator="seq">
+    <simpleAction role="start" max="unbounded" qualifier="par"/>
+    <simpleAction role="stop" max="unbounded" qualifier="par"/>
+    <simpleAction role="set" value="$var" max="unbounded" duration="$duration" by="$by" qualifier="par"/>
   </compoundAction>
 </causalConnector>
 
