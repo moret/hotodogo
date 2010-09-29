@@ -6,11 +6,14 @@
 
 <head>
 	<regionBase>
+		<region id="rgCenter" top="35%" left="35%" width="30%" height="30%"/>
+		
 		<region id="rgBg" width="100%" height="100%" zIndex="0"/>
 		<region id="rgMain" width="100%" height="100%" zIndex="1">
 			<region id="rgHidden" top="-10" left="-10" height="1" width="1"/>
-			<region id="rgButton" top="2%" left="25%" height="4%" width="4%"/>
-			<region id="rgAd" top="5%" left="70%" height="5%" width="5%"/>
+			<region id="rgButton" top="2%" left="71%" height="4%" width="4%"/>
+			<region id="rgSync1" top="5%" left="25%" height="5%" width="5%"/>
+			<region id="rgSync2" top="5%" left="25%" height="8%" width="10%"/>
 			<region id="rgVotingResult" top="70%" left="35%" height="7%" width="30%"/>
 		</region>
 		<region id="rgMenu" top="80%" left="0" height="20%" width="100%" zIndex="1">
@@ -24,22 +27,25 @@
 			<region id="rgMenuItem4" top="77%" left="10%" height="20%" width="20%"/>
 			<!-- Selection regions -->
 			<region id="rgMenuItemBack" top="73%" left="72%" height="15%" width="15%" zIndex="2"/>
-			<region id="rgMenuItemText" top="13%" left="12%" height="70%" width="70%"/>
+			<region id="rgMenuItemText" top="15%" left="12%" height="71%" width="76%"/>
 			<region id="rgMenuItemBorder" top="5%" left="10%" height="90%" width="80%"/>
 		</region>
 	</regionBase>
 	
 	<descriptorBase>
+		<descriptor id="dsCenter" region="rgCenter"/>
+		
 		<descriptor id="dsBg" region="rgBg"/>
-		<descriptor id="dsMain" region="rgMain"/>
+		<descriptor id="dsMain" region="rgMain">
+			<descriptorParam name="soundLevel" value="1"/>
+		</descriptor>
 		<descriptor id="dsHidden" region="rgHidden"/>
 		<descriptor id="dsButton" region="rgButton"/>
-		<descriptor id="dsAd" region="rgAd"/>
+		<descriptor id="dsSync1" region="rgSync1"/>
+		<descriptor id="dsSync2" region="rgSync2"/>
 
 		<!-- Lua Voting -->
 		<descriptor id="dsVotingResult" region="rgVotingResult">
-			<descriptorParam name="fontSize" value="30"/>
-			<descriptorParam name="fontWeight" value="bold"/>
 			<descriptorParam name="transparency" value="0.5"/>
 		</descriptor>
 		<descriptor id="dsVotingOption1" region="rgVotingOption1"/>
@@ -60,7 +66,6 @@
 		<!-- Selection descriptors -->
 		<descriptor id="dsSubMenuBack" region="rgMenuItemBack" focusIndex="21"/>
 		<descriptor id="dsSubMenuText" region="rgMenuItemText">
-			<descriptorParam name="fontSize" value="16"/>
 			<descriptorParam name="transparency" value="1.0"/>
 		</descriptor>
 		<descriptor id="dsSubMenuBorder" region="rgMenuItemBorder"/>
@@ -72,27 +77,40 @@
 </head>
 
 <body>
-	<port id="btRedPort" component="btRed"/>
-	<port id="sampaClipPort" component="sampaClip"/>
-	<port id="luaVotePort" component="luaVote"/>
-	<port id="btFocusPort" component="btFocus"/>
+	<port id="mainPort" component="ctxOpening"/>
 	
+	<!-- Opening -->
+	<context id="ctxOpening">
+		<port id="pOpeningText" component="textOpening"/>
+		<port id="pOpeningTimer" component="openingTimer"/>
+		<media id="textOpening" src="opening.html" descriptor="dsCenter"/>
+		<media id="openingTimer">
+			<area id="end" begin="3s"/>
+		</media>
+		<link xconnector="cb#onBeginStopN">
+			<bind component="openingTimer" interface="end" role="onBegin"/>
+			<bind component="ctxOpening" role="stop"/>
+		</link>
+	</context>
+	
+	<!-- Main -->
 	<media id="btRed" src="buttons/red.png" descriptor="dsButton"/>
 
-	<media id="sampaClip" src="20100815.mp4" descriptor="dsMain">
+	<media id="vidMain" src="vidMain.mp4" descriptor="dsMain">
 		<property name="bounds"/>
-		<area id="start" begin="0s"/>
-		<area id="startKraft" begin="5s"/>
-		<area id="endKraft" begin="10s"/>
-		<area id="startMaionese" begin="12s"/>
-		<area id="endMaionese" begin="20s"/>
-		<area id="endVoting" begin="30s"/>
-		<area id="showVotingResult" begin="35s"/>
+		<area id="start" begin="13s"/>
+		<area id="startSync1" begin="24s"/>
+		<area id="endSync1" begin="30s"/>
+		<area id="startSync2" begin="42s"/>
+		<area id="endSync2" begin="52s"/>
+		<area id="endVoting" begin="90s"/>
+		<area id="showVotingResult" begin="92s"/>
+		<area id="end" begin="100s"/>
 	</media>
 
 	<!-- Ad Medias -->	
-	<media id="adMaionese" src="maio_leite.jpg" descriptor="dsAd"/>
-	<media id="adKraft" src="kraft-logo.png" descriptor="dsAd"/>
+	<media id="adSync1" src="sync1.png" descriptor="dsSync1"/>
+	<media id="adSync2" src="sync2.png" descriptor="dsSync2"/>
 
 	<!-- Voting -->
 	<media id="btFocus" src="buttons/teal.png" descriptor="dsHidden"/>
@@ -107,6 +125,20 @@
 	<media id="vote1wins" src="vote/vote1wins.html" descriptor="dsVotingResult"/>
 	<media id="vote2winsLandslide" src="vote/vote2winsLandslide.html" descriptor="dsVotingResult"/>
 	<media id="vote2wins" src="vote/vote2wins.html" descriptor="dsVotingResult"/>
+	
+	<!-- Credits -->
+	<context id="ctxCredits">
+		<port id="pCredits" component="textCredits"/>
+		<port id="pCreditsTimer" component="creditsTimer"/>
+		<media id="textCredits" src="credits.html" descriptor="dsCenter"/>
+		<media id="creditsTimer">
+			<area id="end" begin="5s"/>
+		</media>
+		<link xconnector="cb#onBeginStopN">
+			<bind component="creditsTimer" interface="end" role="onBegin"/>
+			<bind component="ctxCredits" role="stop"/>
+		</link>
+	</context>
 	
 	<!-- TopMenu -->
 	<context id="ctxMenu">
@@ -291,16 +323,32 @@
 		<media id="btSub3Menu3Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
-	<!-- Main Video End Closes All -->
-	<link xconnector="cb#onEndStop">
-		<bind component="sampaClip" role="onEnd"/>
+	<!-- Opening Ends Open Main -->
+	<link xconnector="cb#onEndStartN">
+		<bind component="ctxOpening" role="onEnd"/>
+		<bind component="vidMain" interface="start" role="start"/>
+		<bind component="btFocus" role="start"/>
+		<bind component="btRed" role="start"/>
+		<bind component="luaVote" role="start"/>
+	</link>
+
+	<!-- Main Video End Closes All Open Credits -->
+	<link xconnector="cb#onBeginStopNStartN">
+		<bind component="vidMain" interface="end" role="onBegin"/>
+		<bind component="ctxCredits" role="start"/>
+		<bind component="vidMain" role="stop"/>
 		<bind component="btRed" role="stop"/>
 		<bind component="btFocus" role="stop"/>
+		<bind component="tie" role="stop"/>
+		<bind component="vote1winsLandslide" role="stop"/>
+		<bind component="vote1wins" role="stop"/>
+		<bind component="vote2winsLandslide" role="stop"/>
+		<bind component="vote2wins" role="stop"/>
 	</link>
 
 	<!-- Close menus before showing voting results -->
 	<link xconnector="cb#onBeginStopNSetN">
-		<bind component="sampaClip" interface="endVoting" role="onBegin"/>
+		<bind component="vidMain" interface="endVoting" role="onBegin"/>
 		<bind component="ctxMenu" role="stop"/>
 		<bind component="ctxSub1Menu" role="stop"/>
 		<bind component="ctxSub1Menu1" role="stop"/>
@@ -315,8 +363,9 @@
 		<bind component="ctxSub3Menu2" role="stop"/>
 		<bind component="ctxSub3Menu3" role="stop"/>		
 		<bind component="btRed" role="stop"/>
-		<bind component="sampaClip" interface="bounds" role="set">
+		<bind component="vidMain" interface="bounds" role="set">
 			<bindParam name="var" value="0.0%, 0.0%, 125.0%, 125.0%"/>
+			<!--<bindParam name="duration" value="1s"/>-->
 		</bind>
 	</link>
 
@@ -339,7 +388,7 @@
 	<!-- Voting Result - Tie -->
 	<link xconnector="cb#onBeginAttNodeTestStartN">
 		<linkParam name="value" value="0"/>
-		<bind component="sampaClip" interface="showVotingResult" role="onBegin"/>
+		<bind component="vidMain" interface="showVotingResult" role="onBegin"/>
 		<bind component="luaVote" interface="luaVoteResult" role="attNodeTest"/>
 		<bind component="tie" role="start"/>
 	</link>
@@ -347,7 +396,7 @@
 	<!-- Voting Result - Option1 Landslide -->
 	<link xconnector="cb#onBeginAttNodeTestStartN">
 		<linkParam name="value" value="1"/>
-		<bind component="sampaClip" interface="showVotingResult" role="onBegin"/>
+		<bind component="vidMain" interface="showVotingResult" role="onBegin"/>
 		<bind component="luaVote" interface="luaVoteResult" role="attNodeTest"/>
 		<bind component="vote1winsLandslide" role="start"/>
 	</link>
@@ -355,7 +404,7 @@
 	<!-- Voting Result - Option1 Simple Win -->
 	<link xconnector="cb#onBeginAttNodeTestStartN">
 		<linkParam name="value" value="2"/>
-		<bind component="sampaClip" interface="showVotingResult" role="onBegin"/>
+		<bind component="vidMain" interface="showVotingResult" role="onBegin"/>
 		<bind component="luaVote" interface="luaVoteResult" role="attNodeTest"/>
 		<bind component="vote1wins" role="start"/>
 	</link>
@@ -363,7 +412,7 @@
 	<!-- Voting Result - Option2 Landslide -->
 	<link xconnector="cb#onBeginAttNodeTestStartN">
 		<linkParam name="value" value="3"/>
-		<bind component="sampaClip" interface="showVotingResult" role="onBegin"/>
+		<bind component="vidMain" interface="showVotingResult" role="onBegin"/>
 		<bind component="luaVote" interface="luaVoteResult" role="attNodeTest"/>
 		<bind component="vote2winsLandslide" role="start"/>
 	</link>
@@ -371,29 +420,29 @@
 	<!-- Voting Result - Option2 Simple Win -->
 	<link xconnector="cb#onBeginAttNodeTestStartN">
 		<linkParam name="value" value="4"/>
-		<bind component="sampaClip" interface="showVotingResult" role="onBegin"/>
+		<bind component="vidMain" interface="showVotingResult" role="onBegin"/>
 		<bind component="luaVote" interface="luaVoteResult" role="attNodeTest"/>
 		<bind component="vote2wins" role="start"/>
 	</link>
 
-	<!-- Kraft Ad -->
+	<!-- Sync1 Ad -->
 	<link xconnector="cb#onBeginStart">
-		<bind component="sampaClip" interface="startKraft" role="onBegin"/>
-		<bind component="adKraft" role="start"/>
+		<bind component="vidMain" interface="startSync1" role="onBegin"/>
+		<bind component="adSync1" role="start"/>
 	</link>
 	<link xconnector="cb#onBeginStop">
-		<bind component="sampaClip" interface="endKraft" role="onBegin"/>
-		<bind component="adKraft" role="stop"/>
+		<bind component="vidMain" interface="endSync1" role="onBegin"/>
+		<bind component="adSync1" role="stop"/>
 	</link>
 
-	<!-- Maionese Ad -->
+	<!-- Sync2 Ad -->
 	<link xconnector="cb#onBeginStart">
-		<bind component="sampaClip" interface="startMaionese" role="onBegin"/>
-		<bind component="adMaionese" role="start"/>
+		<bind component="vidMain" interface="startSync2" role="onBegin"/>
+		<bind component="adSync2" role="start"/>
 	</link>
 	<link xconnector="cb#onBeginStop">
-		<bind component="sampaClip" interface="endMaionese" role="onBegin"/>
-		<bind component="adMaionese" role="stop"/>
+		<bind component="vidMain" interface="endSync2" role="onBegin"/>
+		<bind component="adSync2" role="stop"/>
 	</link>
 	
 	<!-- Open main menu -->
@@ -401,8 +450,9 @@
 		<bind component="btFocus" role="onSelection">
 			<bindParam name="keyCode" value="RED"/>
 		</bind>
-		<bind component="sampaClip" interface="bounds" role="set">
+		<bind component="vidMain" interface="bounds" role="set">
 			<bindParam name="var" value="10.0%, 0.0%, 80.0%, 80.0%"/>
+			<!--<bindParam name="duration" value="1s"/>-->
 		</bind>
 		<bind component="ctxMenu" role="start"/>
 		<bind component="btRed" role="stop"/>
@@ -411,8 +461,9 @@
 	<!-- Close main menu -->
 	<link xconnector="cb#onSelectionStartNStopNSetN">
 		<bind component="ctxMenu" interface="pBtTopMenu4" role="onSelection"/>
-		<bind component="sampaClip" interface="bounds" role="set">
+		<bind component="vidMain" interface="bounds" role="set">
 			<bindParam name="var" value="0.0%, 0.0%, 125.0%, 125.0%"/>
+			<!--<bindParam name="duration" value="1s"/>-->
 		</bind>
 		<bind component="btRed" role="start"/>
 		<bind component="ctxMenu" role="stop"/>
