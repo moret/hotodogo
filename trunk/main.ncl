@@ -103,8 +103,8 @@
 		<area id="endSync1" begin="30s"/>
 		<area id="startSync2" begin="42s"/>
 		<area id="endSync2" begin="52s"/>
-		<area id="endVoting" begin="90s"/>
-		<area id="showVotingResult" begin="92s"/>
+		<area id="endVoting" begin="120s"/>
+		<area id="showVotingResult" begin="130s"/>
 		<area id="end" begin="100s"/>
 	</media>
 
