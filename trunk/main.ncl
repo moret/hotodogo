@@ -10,10 +10,10 @@
 		
 		<region id="rgBg" width="100%" height="100%" zIndex="0"/>
 		<region id="rgMain" width="100%" height="100%" zIndex="1">
-			<region id="rgHidden" top="-10" left="-10" height="1" width="1"/>
-			<region id="rgButton" top="2%" left="71%" height="4%" width="4%"/>
-			<region id="rgSync1" top="5%" right="20%" height="18%" width="17%"/>
-			<region id="rgSyncText" top="3%" left="60%" height="35%" width="40%"/>
+			<region id="rgHidden" top="0" left="0" height="1" width="1"/>
+			<region id="rgButton" top="2%" left="71%" height="8%" width="4.5%"/>
+			<region id="rgSync1" top="12%" right="20%" height="18%" width="17%"/>
+			<region id="rgSyncText" top="12%" left="58%" height="23%" width="32%"/>
 			<region id="rgVotingResult" top="70%" left="35%" height="7%" width="30%"/>
 		</region>
 		<region id="rgMenu" top="80%" left="0" height="20%" width="100%" zIndex="1">
@@ -43,7 +43,9 @@
 		<descriptor id="dsButton" region="rgButton"/>
 		<descriptor id="dsSync1" region="rgSync1"/>
 		<descriptor id="dsSync2" region="rgSync1"/>
-		<descriptor id="dsSync3" region="rgSyncText"/>
+		<descriptor id="dsSync3" region="rgSyncText">
+			<descriptorParam name="transparency" value="0.3"/>
+		</descriptor>
 
 		<!-- Lua Voting -->
 		<descriptor id="dsVotingResult" region="rgVotingResult">
@@ -85,7 +87,7 @@
 		<port id="pOpeningText" component="textOpening"/>
 		<port id="pOpeningTimer" component="openingTimer"/>
 		<media id="textOpening" src="opening.html" descriptor="dsCenter"/>
-		<media id="openingTimer">
+		<media id="openingTimer"><!-- Media for timer, no source nor type -->
 			<area id="end" begin="3s"/>
 		</media>
 		<link xconnector="cb#onBeginStopN">
@@ -95,7 +97,7 @@
 	</context>
 	
 	<!-- Main -->
-	<media id="btRed" src="buttons/red.png" descriptor="dsButton"/>
+	<media id="btRed" src="novas_imagens/information_icon.png" descriptor="dsButton"/>
 
 	<media id="vidMain" src="vidMain.mp4" descriptor="dsMain">
 		<property name="bounds"/>
@@ -123,7 +125,7 @@
 		<area id="luaCastVote1" label="luaVote1"/>
 		<area id="luaCastVote2" label="luaVote2"/>
 		<area id="luaTrigVoteEnds" label="luaVoteEnds"/>
-		<property id="luaVoteEndResult" name="luaVoteResult"/>
+		<property name="luaVoteResult"/>
 	</media>
 	<media id="tie" src="vote/tie.html" descriptor="dsVotingResult"/>
 	<media id="vote1winsLandslide" src="vote/vote1winsLandslide.html" descriptor="dsVotingResult"/>
@@ -135,9 +137,9 @@
 	<context id="ctxCredits">
 		<port id="pCreditsVideo" component="videoCredits"/>
 		<port id="pCreditsTimer" component="creditsTimer"/>
-		<media id="videoCredits" src="credits.mp4" descriptor="dsCenter"/>
+		<media id="videoCredits" src="creditos.mp4" descriptor="dsCenter"/>
 		<media id="textCredits" src="credits.html" descriptor="dsCenter"/>
-		<media id="creditsTimer">
+		<media id="creditsTimer"><!-- Media for timer, no source nor type -->
 			<area id="endCredits" begin="5s"/>
 		</media>
 		<link xconnector="cb#onEndStartN">
