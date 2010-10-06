@@ -12,14 +12,13 @@
 		<region id="rgMain" width="100%" height="100%" zIndex="1">
 			<region id="rgHidden" top="-10" left="-10" height="1" width="1"/>
 			<region id="rgButton" top="2%" left="71%" height="4%" width="4%"/>
-			<region id="rgSync1" top="5%" left="25%" height="5%" width="5%"/>
-			<region id="rgSync2" top="5%" left="25%" height="8%" width="10%"/>
+			<region id="rgSync1" top="5%" right="20%" height="18%" width="17%"/>
 			<region id="rgVotingResult" top="70%" left="35%" height="7%" width="30%"/>
 		</region>
 		<region id="rgMenu" top="80%" left="0" height="20%" width="100%" zIndex="1">
 			<!-- Lua Voting Buttons -->
 			<region id="rgVotingOption1" top="73%" left="72%" height="15%" width="15%"/>
-			<region id="rgVotingOption1" top="73%" left="78%" height="15%" width="15%"/>
+			<region id="rgVotingOption2" top="73%" left="78%" height="15%" width="15%"/>
 			<!-- Menu regions -->
 			<region id="rgMenuItem1" top="5%" left="10%" height="20%" width="20%"/>
 			<region id="rgMenuItem2" top="29%" left="10%" height="20%" width="20%"/>
@@ -42,7 +41,8 @@
 		<descriptor id="dsHidden" region="rgHidden"/>
 		<descriptor id="dsButton" region="rgButton"/>
 		<descriptor id="dsSync1" region="rgSync1"/>
-		<descriptor id="dsSync2" region="rgSync2"/>
+		<descriptor id="dsSync2" region="rgSync1"/>
+		<descriptor id="dsSync3" region="rgSync1"/>
 
 		<!-- Lua Voting -->
 		<descriptor id="dsVotingResult" region="rgVotingResult">
@@ -99,18 +99,22 @@
 	<media id="vidMain" src="vidMain.mp4" descriptor="dsMain">
 		<property name="bounds"/>
 		<area id="start" begin="13s"/>
-		<area id="startSync1" begin="24s"/>
-		<area id="endSync1" begin="30s"/>
-		<area id="startSync2" begin="42s"/>
-		<area id="endSync2" begin="52s"/>
+		<area id="startSync1" begin="32s"/>
+		<area id="endSync1" begin="36s"/>
+		<area id="startSync2" begin="49s"/>
+		<area id="endSync2" begin="53s"/>
+		<area id="startSync3" begin="58s"/>
+		<area id="endSync3" begin="65s"/>
 		<area id="endVoting" begin="120s"/>
 		<area id="showVotingResult" begin="130s"/>
 		<area id="end" begin="100s"/>
 	</media>
 
 	<!-- Ad Medias -->	
-	<media id="adSync1" src="sync1.png" descriptor="dsSync1"/>
+	<media id="adSync1" src="bonecos.gif" descriptor="dsSync1"/>
 	<media id="adSync2" src="sync2.png" descriptor="dsSync2"/>
+	<media id="adSync3" src="sync2.png" descriptor="dsSync3"/>
+	
 
 	<!-- Voting -->
 	<media id="btFocus" src="buttons/teal.png" descriptor="dsHidden"/>
@@ -443,6 +447,16 @@
 	<link xconnector="cb#onBeginStop">
 		<bind component="vidMain" interface="endSync2" role="onBegin"/>
 		<bind component="adSync2" role="stop"/>
+	</link>
+	
+	<!-- Sync3 Ad -->
+	<link xconnector="cb#onBeginStart">
+		<bind component="vidMain" interface="startSync3" role="onBegin"/>
+		<bind component="adSync3" role="start"/>
+	</link>
+	<link xconnector="cb#onBeginStop">
+		<bind component="vidMain" interface="endSync3" role="onBegin"/>
+		<bind component="adSync3" role="stop"/>
 	</link>
 	
 	<!-- Open main menu -->
