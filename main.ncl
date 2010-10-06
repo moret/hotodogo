@@ -13,6 +13,7 @@
 			<region id="rgHidden" top="-10" left="-10" height="1" width="1"/>
 			<region id="rgButton" top="2%" left="71%" height="4%" width="4%"/>
 			<region id="rgSync1" top="5%" right="20%" height="18%" width="17%"/>
+			<region id="rgSyncText" top="3%" left="60%" height="35%" width="40%"/>
 			<region id="rgVotingResult" top="70%" left="35%" height="7%" width="30%"/>
 		</region>
 		<region id="rgMenu" top="80%" left="0" height="20%" width="100%" zIndex="1">
@@ -42,7 +43,7 @@
 		<descriptor id="dsButton" region="rgButton"/>
 		<descriptor id="dsSync1" region="rgSync1"/>
 		<descriptor id="dsSync2" region="rgSync1"/>
-		<descriptor id="dsSync3" region="rgSync1"/>
+		<descriptor id="dsSync3" region="rgSyncText"/>
 
 		<!-- Lua Voting -->
 		<descriptor id="dsVotingResult" region="rgVotingResult">
@@ -103,8 +104,8 @@
 		<area id="endSync1" begin="36s"/>
 		<area id="startSync2" begin="39s"/>
 		<area id="endSync2" begin="44s"/>
-		<!--<area id="startSync3" begin="58s"/>-->
-		<!--<area id="endSync3" begin="65s"/>-->
+		<area id="startSync3" begin="70s"/>
+		<area id="endSync3" begin="89s"/>
 		<area id="endVoting" begin="140s"/>
 		<area id="showVotingResult" begin="150s"/>
 		<!--<area id="end" begin="412s"/>-->
@@ -113,7 +114,7 @@
 	<!-- Ad Medias -->	
 	<media id="adSync1" src="bonecos.gif" descriptor="dsSync1"/>
 	<media id="adSync2" src="sync2.png" descriptor="dsSync2"/>
-	<!--<media id="adSync3" src="sync2.png" descriptor="dsSync3"/>-->
+	<media id="adSync3" src="ingredientes_salada.html" descriptor="dsSync3"/>
 	
 
 	<!-- Voting -->
@@ -455,7 +456,7 @@
 		<bind component="adSync2" role="stop"/>
 	</link>
 	
-	<!-- Sync3 Ad
+	<!-- Sync3 Ad -->
 	<link xconnector="cb#onBeginStart">
 		<bind component="vidMain" interface="startSync3" role="onBegin"/>
 		<bind component="adSync3" role="start"/>
@@ -463,7 +464,7 @@
 	<link xconnector="cb#onBeginStop">
 		<bind component="vidMain" interface="endSync3" role="onBegin"/>
 		<bind component="adSync3" role="stop"/>
-	</link> -->
+	</link>
 	
 	<!-- Open main menu -->
 	<link xconnector="cb#onKeySelectionStartNStopNSetN">
