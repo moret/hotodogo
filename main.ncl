@@ -471,7 +471,7 @@
 	<!-- Open main menu -->
 	<link xconnector="cb#onKeySelectionStartNStopNSetN">
 		<bind component="btFocus" role="onSelection">
-			<bindParam name="keyCode" value="RED"/>
+			<bindParam name="keyCode" value="INFO"/>
 		</bind>
 		<bind component="vidMain" interface="bounds" role="set">
 			<bindParam name="var" value="10.0%, 0.0%, 80.0%, 80.0%"/>
