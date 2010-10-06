@@ -132,12 +132,18 @@
 	
 	<!-- Credits -->
 	<context id="ctxCredits">
-		<port id="pCredits" component="textCredits"/>
+		<port id="pCreditsVideo" component="videoCredits"/>
 		<port id="pCreditsTimer" component="creditsTimer"/>
+		<media id="videoCredits" src="credits.mp4" descriptor="dsCenter"/>
 		<media id="textCredits" src="credits.html" descriptor="dsCenter"/>
 		<media id="creditsTimer">
 			<area id="endCredits" begin="5s"/>
 		</media>
+		<link xconnector="cb#onEndStartN">
+			<bind component="videoCredits" role="onEnd"/>
+			<bind component="textCredits" role="start"/>
+			<bind component="creditsTimer" role="start"/>
+		</link>
 		<link xconnector="cb#onBeginStopN">
 			<bind component="creditsTimer" interface="endCredits" role="onBegin"/>
 			<bind component="ctxCredits" role="stop"/>
