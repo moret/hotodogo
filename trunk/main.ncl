@@ -101,19 +101,19 @@
 		<area id="start" begin="0s"/>
 		<area id="startSync1" begin="32s"/>
 		<area id="endSync1" begin="36s"/>
-		<area id="startSync2" begin="49s"/>
-		<area id="endSync2" begin="53s"/>
-		<area id="startSync3" begin="58s"/>
-		<area id="endSync3" begin="65s"/>
-		<area id="endVoting" begin="385s"/>
-		<area id="showVotingResult" begin="390s"/>
-		<area id="end" begin="412s"/>
+		<area id="startSync2" begin="39s"/>
+		<area id="endSync2" begin="44s"/>
+		<!--<area id="startSync3" begin="58s"/>-->
+		<!--<area id="endSync3" begin="65s"/>-->
+		<area id="endVoting" begin="140s"/>
+		<area id="showVotingResult" begin="150s"/>
+		<!--<area id="end" begin="412s"/>-->
 	</media>
 
 	<!-- Ad Medias -->	
 	<media id="adSync1" src="bonecos.gif" descriptor="dsSync1"/>
 	<media id="adSync2" src="sync2.png" descriptor="dsSync2"/>
-	<media id="adSync3" src="sync2.png" descriptor="dsSync3"/>
+	<!--<media id="adSync3" src="sync2.png" descriptor="dsSync3"/>-->
 	
 
 	<!-- Voting -->
@@ -449,7 +449,7 @@
 		<bind component="adSync2" role="stop"/>
 	</link>
 	
-	<!-- Sync3 Ad -->
+	<!-- Sync3 Ad
 	<link xconnector="cb#onBeginStart">
 		<bind component="vidMain" interface="startSync3" role="onBegin"/>
 		<bind component="adSync3" role="start"/>
@@ -457,7 +457,7 @@
 	<link xconnector="cb#onBeginStop">
 		<bind component="vidMain" interface="endSync3" role="onBegin"/>
 		<bind component="adSync3" role="stop"/>
-	</link>
+	</link> -->
 	
 	<!-- Open main menu -->
 	<link xconnector="cb#onKeySelectionStartNStopNSetN">
