@@ -98,16 +98,16 @@
 
 	<media id="vidMain" src="vidMain.mp4" descriptor="dsMain">
 		<property name="bounds"/>
-		<area id="start" begin="13s"/>
+		<area id="start" begin="0s"/>
 		<area id="startSync1" begin="32s"/>
 		<area id="endSync1" begin="36s"/>
 		<area id="startSync2" begin="49s"/>
 		<area id="endSync2" begin="53s"/>
 		<area id="startSync3" begin="58s"/>
 		<area id="endSync3" begin="65s"/>
-		<area id="endVoting" begin="120s"/>
-		<area id="showVotingResult" begin="130s"/>
-		<area id="end" begin="100s"/>
+		<area id="endVoting" begin="385s"/>
+		<area id="showVotingResult" begin="390s"/>
+		<area id="end" begin="412s"/>
 	</media>
 
 	<!-- Ad Medias -->	
@@ -136,10 +136,10 @@
 		<port id="pCreditsTimer" component="creditsTimer"/>
 		<media id="textCredits" src="credits.html" descriptor="dsCenter"/>
 		<media id="creditsTimer">
-			<area id="end" begin="5s"/>
+			<area id="endCredits" begin="5s"/>
 		</media>
 		<link xconnector="cb#onBeginStopN">
-			<bind component="creditsTimer" interface="end" role="onBegin"/>
+			<bind component="creditsTimer" interface="endCredits" role="onBegin"/>
 			<bind component="ctxCredits" role="stop"/>
 		</link>
 	</context>
@@ -337,8 +337,8 @@
 	</link>
 
 	<!-- Main Video End Closes All Open Credits -->
-	<link xconnector="cb#onBeginStopNStartN">
-		<bind component="vidMain" interface="end" role="onBegin"/>
+	<link xconnector="cb#onEndStopNStartN">
+		<bind component="vidMain" role="onEnd"/>
 		<bind component="ctxCredits" role="start"/>
 		<bind component="vidMain" role="stop"/>
 		<bind component="btRed" role="stop"/>
