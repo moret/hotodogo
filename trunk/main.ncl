@@ -5,6 +5,11 @@
 		http://www.ncl.org.br/NCL3.0/profiles/NCL30EDTV.xsd">
 
 <head>
+	<ruleBase>
+		<rule id="isPt" var="system.language" comparator="eq" value="pt"/>
+		<rule id="isEs" var="system.language" comparator="eq" value="es"/>
+	</ruleBase>
+
 	<regionBase>
 		<region id="rgCenter" top="35%" left="35%" width="30%" height="30%"/>
 		
@@ -81,13 +86,17 @@
 
 <body>
 	<port id="mainPort" component="ctxOpening"/>
+
+	<media id="nodeSettings" type="application/x-ginga-settings">
+		<property name="system.language"/>
+	</media>
 	
 	<!-- Opening -->
 	<context id="ctxOpening">
 		<port id="pOpeningText" component="textOpening"/>
 		<port id="pOpeningTimer" component="openingTimer"/>
 		<media id="textOpening" src="opening.html" descriptor="dsCenter"/>
-		<media id="openingTimer"><!-- Media for timer, no source nor type -->
+		<media id="openingTimer" type="application/x-ncl-time">
 			<area id="end" begin="3s"/>
 		</media>
 		<link xconnector="cb#onBeginStopN">
@@ -106,7 +115,8 @@
 		<area id="endSync1" begin="36s"/>
 		<area id="startSync2" begin="39s"/>
 		<area id="endSync2" begin="44s"/>
-		<area id="startSync3" begin="70s"/>
+		<area id="startSync3" begin="2s"/>
+		<!--<area id="startSync3" begin="70s"/>-->
 		<area id="endSync3" begin="89s"/>
 		<area id="endVoting" begin="140s"/>
 		<area id="showVotingResult" begin="150s"/>
@@ -116,9 +126,14 @@
 	<!-- Ad Medias -->	
 	<media id="adSync1" src="bonecos.gif" descriptor="dsSync1"/>
 	<media id="adSync2" src="sync2.png" descriptor="dsSync2"/>
-	<media id="adSync3" src="ingredientes_salada.html" descriptor="dsSync3"/>
+	<switch id="adSync3">
+		<defaultComponent component="ingredients-pt"/>
+		<bindRule constituent="ingredients-pt" rule="isPt"/>
+		<bindRule constituent="ingredients-es" rule="isEs"/>
+		<media id="ingredients-pt" src="ingredientes_salada.html" descriptor="dsSync3"/>
+		<media id="ingredients-es" src="ingredientes_salada_esp.html" descriptor="dsSync3"/>
+	</switch>
 	
-
 	<!-- Voting -->
 	<media id="btFocus" src="buttons/teal.png" descriptor="dsHidden"/>
 	<media id="luaVote" src="vote/vote.lua">
@@ -139,7 +154,7 @@
 		<port id="pCreditsTimer" component="creditsTimer"/>
 		<media id="videoCredits" src="creditos.mp4" descriptor="dsCenter"/>
 		<media id="textCredits" src="credits.html" descriptor="dsCenter"/>
-		<media id="creditsTimer"><!-- Media for timer, no source nor type -->
+		<media id="creditsTimer" type="application/x-ncl-time">
 			<area id="endCredits" begin="8s"/>
 		</media>
 		<link xconnector="cb#onEndStartN">
@@ -480,7 +495,7 @@
 		<bind component="ctxMenu" role="start"/>
 		<bind component="btRed" role="stop"/>
 	</link>
-
+	
 	<!-- Close main menu -->
 	<link xconnector="cb#onSelectionStartNStopNSetN">
 		<bind component="ctxMenu" interface="pBtTopMenu4" role="onSelection"/>
