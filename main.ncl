@@ -115,8 +115,7 @@
 		<area id="endSync1" begin="36s"/>
 		<area id="startSync2" begin="39s"/>
 		<area id="endSync2" begin="44s"/>
-		<area id="startSync3" begin="2s"/>
-		<!--<area id="startSync3" begin="70s"/>-->
+		<area id="startSync3" begin="70s"/>
 		<area id="endSync3" begin="89s"/>
 		<area id="endVoting" begin="140s"/>
 		<area id="showVotingResult" begin="150s"/>
