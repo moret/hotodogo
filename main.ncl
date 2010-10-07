@@ -140,7 +140,7 @@
 		<media id="videoCredits" src="creditos.mp4" descriptor="dsCenter"/>
 		<media id="textCredits" src="credits.html" descriptor="dsCenter"/>
 		<media id="creditsTimer"><!-- Media for timer, no source nor type -->
-			<area id="endCredits" begin="5s"/>
+			<area id="endCredits" begin="8s"/>
 		</media>
 		<link xconnector="cb#onEndStartN">
 			<bind component="videoCredits" role="onEnd"/>
