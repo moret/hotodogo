@@ -366,6 +366,7 @@
 		<bind component="vidMain" role="stop"/>
 		<bind component="btRed" role="stop"/>
 		<bind component="btFocus" role="stop"/>
+		<bind component="luaVote" role="stop"/>
 		<bind component="tie" role="stop"/>
 		<bind component="vote1winsLandslide" role="stop"/>
 		<bind component="vote1wins" role="stop"/>
