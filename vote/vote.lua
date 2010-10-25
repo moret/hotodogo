@@ -6,10 +6,14 @@ function luaVote(evt)
 	if evt.class == "ncl" and evt.action == "start" and evt.type == "presentation" then
 		if evt.label == "luaVote1" then
 			votesOption1 = votesOption1 + 1
+			evt.action = "stop"
+			event.post("out", evt)
 		end
 
 		if evt.label == "luaVote2" then
 			votesOption2 = votesOption2 + 1
+			evt.action = "stop"
+			event.post("out", evt)
 		end
 		
 		-- tie
@@ -44,10 +48,6 @@ function luaVote(evt)
 	end
 
 	print("option1: " .. votesOption1 .. "; option2: " .. votesOption2)
-	--if evt.name then
-	--	evt.action = "stop"
-	--	event.post("out", evt)
-	--end
 end
 
 --print("event.register(luaVote)")
