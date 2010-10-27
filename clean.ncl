@@ -31,9 +31,8 @@
 			<region id="rgMenuItem3" top="53%" left="10%" height="20%" width="11%"/>
 			<region id="rgMenuItem4" top="77%" left="10%" height="20%" width="11%"/>
 			<!-- Selection regions -->
-			<region id="rgMenuItemBack" top="73%" left="72%" height="15%" width="15%" zIndex="2"/>
-			<region id="rgMenuItemText" top="15%" left="12%" height="71%" width="76%"/>
-			<region id="rgMenuItemBorder" top="5%" left="10%" height="90%" width="80%"/>
+			<region id="rgMenuItemBack" top="68%" left="72%" height="30%" width="15%" zIndex="3"/>
+			<region id="rgMenuItemText" top="2%" left="10%" height="98%" width="80%" zIndex="2"/>
 		</region>
 	</regionBase>
 	
@@ -74,9 +73,9 @@
 		<!-- Selection descriptors -->
 		<descriptor id="dsSubMenuBack" region="rgMenuItemBack" focusIndex="21"/>
 		<descriptor id="dsSubMenuText" region="rgMenuItemText">
-			<descriptorParam name="transparency" value="1.0"/>
+			<descriptorParam name="background" value="white"/>
+			<descriptorParam name="transInBorderColor" value="0000ff"/>
 		</descriptor>
-		<descriptor id="dsSubMenuBorder" region="rgMenuItemBorder"/>
 	</descriptorBase>
 	
 	<connectorBase>
@@ -107,7 +106,7 @@
 	
 	<!-- Main -->
 	<media id="btRed" src="novas_imagens/information_icon.png" descriptor="dsButton"/>
-
+	<media id="bgTop" src="bg.png" descriptor="dsBg"/>
 	<media id="vidMain" src="vidMain.mp4" descriptor="dsMain">
 		<property name="bounds"/>
 		<area id="start" begin="0s"/>
@@ -173,9 +172,7 @@
 		<port id="pBtTopMenu2" component="btTopMenu2"/>
 		<port id="pBtTopMenu3" component="btTopMenu3"/>
 		<port id="pBtTopMenu4" component="btTopMenu4"/>
-		<port id="pBgTop" component="bgTop"/>
-				
-		<media id="bgTop" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btTopMenu1" src="menu/topmenu1.png" descriptor="dsMenuItem1"/>
 		<media id="btTopMenu2" src="menu/topmenu2.png" descriptor="dsMenuItem2"/>
 		<media id="btTopMenu3" src="menu/topmenu3.png" descriptor="dsMenuItem3"/>
@@ -190,9 +187,7 @@
 		<port id="pBtSub1Menu2" component="btSub1Menu2"/>
 		<port id="pBtSub1Menu3" component="btSub1Menu3"/>
 		<port id="pBtSub1Menu4" component="btSub1Menu4"/>
-		<port id="pBg1Sub" component="bg1Sub"/>
-				
-		<media id="bg1Sub" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub1Menu1" src="menu/sub1menu1.png" descriptor="dsSubMenuItem1"/>
 		<media id="btSub1Menu2" src="menu/sub1menu2.png" descriptor="dsSubMenuItem2"/>
 		<media id="btSub1Menu3" src="menu/sub1menu3.png" descriptor="dsSubMenuItem3"/>
@@ -203,39 +198,27 @@
 	<context id="ctxSub1Menu1">
 		<port id="pBtSub1Menu1Back" component="btSub1Menu1Back"/>
 		<port id="pBtSub1Menu1Text" component="btSub1Menu1Text"/>
-		<port id="pBtSub1Menu1Border" component="btSub1Menu1Border"/>
-		<port id="pBg1Sub1" component="bg1Sub1"/>
-				
-		<media id="bg1Sub1" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub1Menu1Back" src="menu/sub1menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub1Menu1Text" src="menu/sub1menu1.html" descriptor="dsSubMenuText"/>
-		<media id="btSub1Menu1Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- SubMenu 1 Option 2 -->
 	<context id="ctxSub1Menu2">
 		<port id="pBtSub1Menu2Back" component="btSub1Menu2Back"/>
 		<port id="pBtSub1Menu2Text" component="btSub1Menu2Text"/>
-		<port id="pBtSub1Menu2Border" component="btSub1Menu2Border"/>
-		<port id="pBg1Sub2" component="bg1Sub2"/>
-				
-		<media id="bg1Sub2" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub1Menu2Back" src="menu/sub1menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub1Menu2Text" src="menu/sub1menu2.html" descriptor="dsSubMenuText"/>
-		<media id="btSub1Menu2Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- SubMenu 1 Option 3 -->
 	<context id="ctxSub1Menu3">
 		<port id="pBtSub1Menu3Back" component="btSub1Menu3Back"/>
 		<port id="pBtSub1Menu3Text" component="btSub1Menu3Text"/>
-		<port id="pBtSub1Menu3Border" component="btSub1Menu3Border"/>
-		<port id="pBg1Sub3" component="bg1Sub3"/>
-				
-		<media id="bg1Sub3" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub1Menu3Back" src="menu/sub1menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub1Menu3Text" src="menu/sub1menu3.html" descriptor="dsSubMenuText"/>
-		<media id="btSub1Menu3Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- ::: Sub Menu 2 Contexts ::: -->
@@ -246,9 +229,7 @@
 		<port id="pBtSub2Menu2" component="btSub2Menu2"/>
 		<port id="pBtSub2Menu3" component="btSub2Menu3"/>
 		<port id="pBtSub2Menu4" component="btSub2Menu4"/>
-		<port id="pBg2Sub" component="bg2Sub"/>
-				
-		<media id="bg2Sub" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub2Menu1" src="menu/sub2menu1.png" descriptor="dsSubMenuItem1"/>
 		<media id="btSub2Menu2" src="menu/sub2menu2.png" descriptor="dsSubMenuItem2"/>
 		<media id="btSub2Menu3" src="menu/sub2menu3.png" descriptor="dsSubMenuItem3"/>
@@ -259,39 +240,27 @@
 	<context id="ctxSub2Menu1">
 		<port id="pBtSub2Menu1Back" component="btSub2Menu1Back"/>
 		<port id="pBtSub2Menu1Text" component="btSub2Menu1Text"/>
-		<port id="pBtSub2Menu1Border" component="btSub2Menu1Border"/>
-		<port id="pBg2Sub1" component="bg2Sub1"/>
-				
-		<media id="bg2Sub1" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub2Menu1Back" src="menu/sub2menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub2Menu1Text" src="menu/sub2menu1.html" descriptor="dsSubMenuText"/>
-		<media id="btSub2Menu1Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- SubMenu 2 Option 2 -->
 	<context id="ctxSub2Menu2">
 		<port id="pBtSub2Menu2Back" component="btSub2Menu2Back"/>
 		<port id="pBtSub2Menu2Text" component="btSub2Menu2Text"/>
-		<port id="pBtSub2Menu2Border" component="btSub2Menu2Border"/>
-		<port id="pBg2Sub2" component="bg2Sub2"/>
-				
-		<media id="bg2Sub2" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub2Menu2Back" src="menu/sub2menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub2Menu2Text" src="menu/sub2menu2.html" descriptor="dsSubMenuText"/>
-		<media id="btSub2Menu2Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- SubMenu 2 Option 3 -->
 	<context id="ctxSub2Menu3">
 		<port id="pBtSub2Menu3Back" component="btSub2Menu3Back"/>
 		<port id="pBtSub2Menu3Text" component="btSub2Menu3Text"/>
-		<port id="pBtSub2Menu3Border" component="btSub2Menu3Border"/>
-		<port id="pBg2Sub3" component="bg2Sub3"/>
-				
-		<media id="bg2Sub3" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub2Menu3Back" src="menu/sub2menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub2Menu3Text" src="menu/sub2menu3.html" descriptor="dsSubMenuText"/>
-		<media id="btSub2Menu3Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- ::: Sub Menu 3 Contexts ::: -->
@@ -302,9 +271,7 @@
 		<port id="pBtSub3Menu2" component="btSub3Menu2"/>
 		<port id="pBtSub3Menu3" component="btSub3Menu3"/>
 		<port id="pBtSub3Menu4" component="btSub3Menu4"/>
-		<port id="pBg3Sub" component="bg3Sub"/>
-				
-		<media id="bg3Sub" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub3Menu1" src="menu/sub3menu1.png" descriptor="dsSubMenuItem1"/>
 		<media id="btSub3Menu2" src="menu/sub3menu2.png" descriptor="dsSubMenuItem2"/>
 		<media id="btSub3Menu3" src="menu/sub3menu3.png" descriptor="dsSubMenuItem3"/>
@@ -315,39 +282,27 @@
 	<context id="ctxSub3Menu1">
 		<port id="pBtSub3Menu1Back" component="btSub3Menu1Back"/>
 		<port id="pBtSub3Menu1Text" component="btSub3Menu1Text"/>
-		<port id="pBtSub3Menu1Border" component="btSub3Menu1Border"/>
-		<port id="pBg3Sub1" component="bg3Sub1"/>
-				
-		<media id="bg3Sub1" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub3Menu1Back" src="menu/sub3menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub3Menu1Text" src="menu/sub3menu1.html" descriptor="dsSubMenuText"/>
-		<media id="btSub3Menu1Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- SubMenu 2 Option 2 -->
 	<context id="ctxSub3Menu2">
 		<port id="pBtSub3Menu2Back" component="btSub3Menu2Back"/>
 		<port id="pBtSub3Menu2Text" component="btSub3Menu2Text"/>
-		<port id="pBtSub3Menu2Border" component="btSub3Menu2Border"/>
-		<port id="pBg3Sub2" component="bg3Sub2"/>
-				
-		<media id="bg3Sub2" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub3Menu2Back" src="menu/sub3menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub3Menu2Text" src="menu/sub3menu2.html" descriptor="dsSubMenuText"/>
-		<media id="btSub3Menu2Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- SubMenu 2 Option 3 -->
 	<context id="ctxSub3Menu3">
 		<port id="pBtSub3Menu3Back" component="btSub3Menu3Back"/>
 		<port id="pBtSub3Menu3Text" component="btSub3Menu3Text"/>
-		<port id="pBtSub3Menu3Border" component="btSub3Menu3Border"/>
-		<port id="pBg3Sub3" component="bg3Sub3"/>
-				
-		<media id="bg3Sub3" src="bg.png" descriptor="dsBg"/>
+
 		<media id="btSub3Menu3Back" src="menu/sub3menu4.png" descriptor="dsSubMenuBack"/>
 		<media id="btSub3Menu3Text" src="menu/sub3menu3.html" descriptor="dsSubMenuText"/>
-		<media id="btSub3Menu3Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
 	<!-- Opening Ends Open Main -->
@@ -356,6 +311,7 @@
 		<bind component="vidMain" interface="start" role="start"/>
 		<bind component="btFocus" role="start"/>
 		<bind component="btRed" role="start"/>
+		<bind component="bgTop" role="start"/>
 		<bind component="luaVote" role="start"/>
 	</link>
 
@@ -366,6 +322,7 @@
 		<bind component="vidMain" role="stop"/>
 		<bind component="btRed" role="stop"/>
 		<bind component="btFocus" role="stop"/>
+		<bind component="bgTop" role="stop"/>
 		<bind component="luaVote" role="stop"/>
 		<bind component="tie" role="stop"/>
 		<bind component="vote1winsLandslide" role="stop"/>
@@ -485,7 +442,7 @@
 	
 	<!-- Open main menu -->
 	<link xconnector="cb#onKeySelectionStartNStopNSetN">
-		<bind component="btFocus" role="onSelection">
+		<bind component="btRed" role="onSelection">
 			<bindParam name="keyCode" value="INFO"/>
 		</bind>
 		<bind component="vidMain" interface="bounds" role="set">
