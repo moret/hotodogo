@@ -118,8 +118,7 @@
 	<media id="vidMain" src="vidMain.mp4" descriptor="dsMain">
 		<property name="bounds"/>
 		<area id="start" begin="0s"/>
-		<area id="startSync1" begin="3s"/>
-		<!--<area id="startSync1" begin="32s"/>-->
+		<area id="startSync1" begin="32s"/>
 		<area id="endSync1" begin="36s"/>
 		<area id="startSync2" begin="39s"/>
 		<area id="endSync2" begin="44s"/>
