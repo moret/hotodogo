@@ -228,7 +228,7 @@
 				
 		<media id="bg1Sub1" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub1Menu1Back" src="menu/sub1menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub1Menu1Text" src="menu/sub1menu1.html" descriptor="dsSubMenuText"/>
+		<media id="btSub1Menu1Text" src="menu/sub1menu1Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub1Menu1Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -241,7 +241,7 @@
 				
 		<media id="bg1Sub2" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub1Menu2Back" src="menu/sub1menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub1Menu2Text" src="menu/sub1menu2.html" descriptor="dsSubMenuText"/>
+		<media id="btSub1Menu2Text" src="menu/sub1menu2Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub1Menu2Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -254,7 +254,7 @@
 				
 		<media id="bg1Sub3" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub1Menu3Back" src="menu/sub1menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub1Menu3Text" src="menu/sub1menu3.html" descriptor="dsSubMenuText"/>
+		<media id="btSub1Menu3Text" src="menu/sub1menu3Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub1Menu3Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -284,7 +284,7 @@
 				
 		<media id="bg2Sub1" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub2Menu1Back" src="menu/sub2menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub2Menu1Text" src="menu/sub2menu1.html" descriptor="dsSubMenuText"/>
+		<media id="btSub2Menu1Text" src="menu/sub2menu1Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub2Menu1Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -297,7 +297,7 @@
 				
 		<media id="bg2Sub2" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub2Menu2Back" src="menu/sub2menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub2Menu2Text" src="menu/sub2menu2.html" descriptor="dsSubMenuText"/>
+		<media id="btSub2Menu2Text" src="menu/sub2menu2Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub2Menu2Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -310,7 +310,7 @@
 				
 		<media id="bg2Sub3" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub2Menu3Back" src="menu/sub2menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub2Menu3Text" src="menu/sub2menu3.html" descriptor="dsSubMenuText"/>
+		<media id="btSub2Menu3Text" src="menu/sub2menu3Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub2Menu3Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -340,7 +340,7 @@
 				
 		<media id="bg3Sub1" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub3Menu1Back" src="menu/sub3menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub3Menu1Text" src="menu/sub3menu1.html" descriptor="dsSubMenuText"/>
+		<media id="btSub3Menu1Text" src="menu/sub3menu1Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub3Menu1Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -353,7 +353,7 @@
 				
 		<media id="bg3Sub2" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub3Menu2Back" src="menu/sub3menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub3Menu2Text" src="menu/sub3menu2.html" descriptor="dsSubMenuText"/>
+		<media id="btSub3Menu2Text" src="menu/sub3menu2Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub3Menu2Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
@@ -366,7 +366,7 @@
 				
 		<media id="bg3Sub3" src="bg.png" descriptor="dsBg"/>
 		<media id="btSub3Menu3Back" src="menu/sub3menu4.png" descriptor="dsSubMenuBack"/>
-		<media id="btSub3Menu3Text" src="menu/sub3menu3.html" descriptor="dsSubMenuText"/>
+		<media id="btSub3Menu3Text" src="menu/sub3menu3Text.png" descriptor="dsSubMenuText"/>
 		<media id="btSub3Menu3Border" src="destaque.png" descriptor="dsSubMenuBorder"/>
 	</context>
 
