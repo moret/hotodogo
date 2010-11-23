@@ -29,8 +29,8 @@
 		<defaultComponent component="ingredients-pt"/>
 		<bindRule constituent="ingredients-pt" rule="isPt"/>
 		<bindRule constituent="ingredients-es" rule="isEs"/>
-		<media id="ingredients-pt" src="ingredientes_salada.html" descriptor="dsMain"/>
-		<media id="ingredients-es" src="ingredientes_salada_esp.html" descriptor="dsMain"/>
+		<media id="ingredients-pt" src="ingredientes_salada.png" descriptor="dsMain"/>
+		<media id="ingredients-es" src="ingredientes_salada_esp.png" descriptor="dsMain"/>
 	</switch>
 </body>
 </ncl>
