@@ -6,8 +6,8 @@
 
 <head>
 	<ruleBase>
-		<rule id="isPt" var="system.language" comparator="eq" value="pt"/>
-		<rule id="isEs" var="system.language" comparator="eq" value="es"/>
+		<rule id="hasNoDev" var="system.devNumber(2)" comparator="eq" value="0"/>
+		<rule id="hasDev" var="system.devNumber(2)" comparator="gt" value="0"/>
 	</ruleBase>
 
 	<regionBase>
@@ -36,15 +36,22 @@
 			<region id="rgMenuItemBorder" top="5%" left="10%" height="90%" width="80%"/>
 		</region>
 	</regionBase>
-	
+
+	<regionBase device="systemScreen(2)">
+		<region id="rgDev"/>
+	</regionBase>
+
 	<descriptorBase>
+		<descriptor id="dsDev" region="rgDev"/>
+		
 		<descriptor id="dsCenter" region="rgCenter"/>
 		
 		<descriptor id="dsBg" region="rgBg"/>
 		<descriptor id="dsMain" region="rgMain">
 			<descriptorParam name="soundLevel" value="1"/>
 		</descriptor>
-		<descriptor id="dsHidden" region="rgHidden"/>
+		<descriptor id="dsHiddenMenu" region="rgHidden"/>
+		<descriptor id="dsHiddenVote" region="rgHidden"/>
 		<descriptor id="dsButton" region="rgButton"/>
 		<descriptor id="dsSync1" region="rgSync1"/>
 		<descriptor id="dsSync2" region="rgSync1"/>
@@ -111,7 +118,8 @@
 	<media id="vidMain" src="vidMain.mp4" descriptor="dsMain">
 		<property name="bounds"/>
 		<area id="start" begin="0s"/>
-		<area id="startSync1" begin="32s"/>
+		<area id="startSync1" begin="3s"/>
+		<!--<area id="startSync1" begin="32s"/>-->
 		<area id="endSync1" begin="36s"/>
 		<area id="startSync2" begin="39s"/>
 		<area id="endSync2" begin="44s"/>
@@ -122,19 +130,32 @@
 		<!--<area id="end" begin="412s"/>-->
 	</media>
 
-	<!-- Ad Medias -->	
-	<media id="adSync1" src="bonecos.gif" descriptor="dsSync1"/>
-	<media id="adSync2" src="sync2.png" descriptor="dsSync2"/>
+	<!-- Ad Medias -->
+	<switch id="adSync1">
+		<defaultComponent component="adSync1-main"/>
+		<bindRule constituent="adSync1-main" rule="hasNoDev"/>
+		<bindRule constituent="adSync1-dev" rule="hasDev"/>
+		<media id="adSync1-main" src="bonecos-felizes.ncl" descriptor="dsSync1"/>
+		<media id="adSync1-dev" src="bonecos-felizes.ncl" descriptor="dsDev"/>
+	</switch>
+	<switch id="adSync2">
+		<defaultComponent component="adSync2-main"/>
+		<bindRule constituent="adSync2-main" rule="hasNoDev"/>
+		<bindRule constituent="adSync2-dev" rule="hasDev"/>
+		<media id="adSync2-main" src="sync2.ncl" descriptor="dsSync2"/>
+		<media id="adSync2-dev" src="sync2.ncl" descriptor="dsDev"/>
+	</switch>
 	<switch id="adSync3">
-		<defaultComponent component="ingredients-pt"/>
-		<bindRule constituent="ingredients-pt" rule="isPt"/>
-		<bindRule constituent="ingredients-es" rule="isEs"/>
-		<media id="ingredients-pt" src="ingredientes_salada.html" descriptor="dsSync3"/>
-		<media id="ingredients-es" src="ingredientes_salada_esp.html" descriptor="dsSync3"/>
+		<defaultComponent component="adSync3-main"/>
+		<bindRule constituent="adSync3-main" rule="hasNoDev"/>
+		<bindRule constituent="adSync3-dev" rule="hasDev"/>
+		<media id="adSync3-main" src="ingredientes.ncl" descriptor="dsSync3"/>
+		<media id="adSync3-dev" src="ingredientes.ncl" descriptor="dsDev"/>
 	</switch>
 	
 	<!-- Voting -->
-	<media id="btFocus" src="buttons/teal.png" descriptor="dsHidden"/>
+	<media id="btFocusVote" src="buttons/teal.png" descriptor="dsHiddenVote"/>
+	<media id="btFocusMenu" src="buttons/lavender.png" descriptor="dsHiddenMenu"/>
 	<media id="luaVote" src="vote/vote.lua">
 		<area id="luaCastVote1" label="luaVote1"/>
 		<area id="luaCastVote2" label="luaVote2"/>
@@ -354,7 +375,8 @@
 	<link xconnector="cb#onEndStartN">
 		<bind component="ctxOpening" role="onEnd"/>
 		<bind component="vidMain" interface="start" role="start"/>
-		<bind component="btFocus" role="start"/>
+		<bind component="btFocusVote" role="start"/>
+		<bind component="btFocusMenu" role="start"/>
 		<bind component="btRed" role="start"/>
 		<bind component="luaVote" role="start"/>
 	</link>
@@ -365,7 +387,8 @@
 		<bind component="ctxCredits" role="start"/>
 		<bind component="vidMain" role="stop"/>
 		<bind component="btRed" role="stop"/>
-		<bind component="btFocus" role="stop"/>
+		<bind component="btFocusVote" role="stop"/>
+		<bind component="btFocusMenu" role="stop"/>
 		<bind component="luaVote" role="stop"/>
 		<bind component="tie" role="stop"/>
 		<bind component="vote1winsLandslide" role="stop"/>
@@ -399,7 +422,7 @@
 
 	<!-- Voting Option1 -->
 	<link xconnector="cb#onKeySelectionStart">
-		<bind component="btFocus" role="onSelection">
+		<bind component="btFocusVote" role="onSelection">
 			<bindParam name="keyCode" value="YELLOW"/>
 		</bind>
 		<bind component="luaVote" interface="luaCastVote1" role="start"/>
@@ -407,7 +430,7 @@
 
 	<!-- Voting Option2 -->
 	<link xconnector="cb#onKeySelectionStart">
-		<bind component="btFocus" role="onSelection">
+		<bind component="btFocusVote" role="onSelection">
 			<bindParam name="keyCode" value="BLUE"/>
 		</bind>
 		<bind component="luaVote" interface="luaCastVote2" role="start"/>
@@ -485,7 +508,7 @@
 	
 	<!-- Open main menu -->
 	<link xconnector="cb#onKeySelectionStartNStopNSetN">
-		<bind component="btFocus" role="onSelection">
+		<bind component="btFocusMenu" role="onSelection">
 			<bindParam name="keyCode" value="INFO"/>
 		</bind>
 		<bind component="vidMain" interface="bounds" role="set">
@@ -493,6 +516,7 @@
 			<!--<bindParam name="duration" value="1s"/>-->
 		</bind>
 		<bind component="ctxMenu" role="start"/>
+		<bind component="btFocusMenu" role="stop"/>
 		<bind component="btRed" role="stop"/>
 	</link>
 	
@@ -504,6 +528,7 @@
 			<!--<bindParam name="duration" value="1s"/>-->
 		</bind>
 		<bind component="btRed" role="start"/>
+		<bind component="btFocusMenu" role="start"/>
 		<bind component="ctxMenu" role="stop"/>
 	</link>
 
