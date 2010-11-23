@@ -135,21 +135,21 @@
 		<bindRule constituent="adSync1-main" rule="hasNoDev"/>
 		<bindRule constituent="adSync1-dev" rule="hasDev"/>
 		<media id="adSync1-main" src="bonecos-felizes.ncl" descriptor="dsSync1"/>
-		<media id="adSync1-dev" src="bonecos-felizes.ncl" descriptor="dsDev"/>
+		<media id="adSync1-dev" src="NCLApplications/hotodogo/bonecos-felizes.ncl" descriptor="dsDev"/>
 	</switch>
 	<switch id="adSync2">
 		<defaultComponent component="adSync2-main"/>
 		<bindRule constituent="adSync2-main" rule="hasNoDev"/>
 		<bindRule constituent="adSync2-dev" rule="hasDev"/>
 		<media id="adSync2-main" src="sync2.ncl" descriptor="dsSync2"/>
-		<media id="adSync2-dev" src="sync2.ncl" descriptor="dsDev"/>
+		<media id="adSync2-dev" src="NCLApplications/hotodogo/sync2.ncl" descriptor="dsDev"/>
 	</switch>
 	<switch id="adSync3">
 		<defaultComponent component="adSync3-main"/>
 		<bindRule constituent="adSync3-main" rule="hasNoDev"/>
 		<bindRule constituent="adSync3-dev" rule="hasDev"/>
 		<media id="adSync3-main" src="ingredientes.ncl" descriptor="dsSync3"/>
-		<media id="adSync3-dev" src="ingredientes.ncl" descriptor="dsDev"/>
+		<media id="adSync3-dev" src="NCLApplications/hotodogo/ingredientes.ncl" descriptor="dsDev"/>
 	</switch>
 	
 	<!-- Voting -->
