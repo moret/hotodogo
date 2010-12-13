@@ -16,7 +16,7 @@
 		<region id="rgBg" width="100%" height="100%" zIndex="0"/>
 		<region id="rgMain" width="100%" height="100%" zIndex="1">
 			<region id="rgHidden" top="0" left="0" height="1" width="1"/>
-			<region id="rgButton" top="2%" left="71%" height="8%" width="4.5%"/>
+			<region id="rgButton" top="15%" left="92%" height="8%" width="4.5%"/>
 			<region id="rgSync1" top="12%" right="20%" height="18%" width="17%"/>
 			<region id="rgSyncText" top="12%" left="58%" height="23%" width="32%"/>
 			<region id="rgVotingResult" top="70%" left="35%" height="7%" width="30%"/>
